@@ -7,13 +7,19 @@ POST localhost:8080/student-course/create
 Content-Type: application/json
 
 {
-  "studentId": 2,
+  "studentId": 3,
   "courseId": 2,
-  "mark": true
+  "mark": 4
 }
 
 ###
-GET localhost:8080/student-course/
+GET localhost:8080/student-course/2
 
 ###
 GET localhost:8080/student-course/detail/1
+
+###
+GET localhost:8080/student-course/mark/3?date=2025-11-18T12:56:41.467236
+
+###
+GET localhost:8080/student-course/mark-between-dates/3?from=2025-11-18T12:56:41.467235&to=2025-11-18T12:56:41.467238

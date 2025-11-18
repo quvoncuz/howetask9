@@ -42,8 +42,8 @@ StudentCourseMark
     	    response (id,student(id,name,surname),Course(id,name),mark,createdDate,)
     ✅5. Delete StudentCourseMark by id.
     ✅6. Get List of StudentCourseMark. Return All
-	7. Studentni berilgan kundagi olgan baxosi
-	8. Studentni berilgan 2kun oralig'idagi olgan baxosi.
+	✅7. Studentni berilgan kundagi olgan baxosi
+	✅8. Studentni berilgan 2kun oralig'idagi olgan baxosi.
 	9. Studentni olgan barcha baxolari vaqt boyicha kamayish tartibida sord qiling.
 	10. Studentni berilgan curse dan olgan baxolari vaqt boyicha kamayish tartibida sord qiling.
 	11. Studentni eng oxirda olgan baxosi, va curse nomi.

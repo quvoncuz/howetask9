@@ -44,4 +44,19 @@ public class StudentCourseMarkController {
         List<StudentCourseMarkDTO> studentCourseMarkDTOList = studentCourseMarkService.findAll();
         return ResponseEntity.ok(studentCourseMarkDTOList);
     }
+
+    @GetMapping("/mark/{id}")
+    public ResponseEntity<List<StudentCourseMarkDTO>> findStudentMarkByDate(@PathVariable("id") Long studentId,
+                                                                            @RequestParam String date){
+        List<StudentCourseMarkDTO> markByDate = studentCourseMarkService.getMarkByDate(studentId, date);
+        return ResponseEntity.ok(markByDate);
+    }
+
+    @GetMapping("/mark-between-dates/{id}")
+    public ResponseEntity<List<StudentCourseMarkDTO>> findStudentMarkBetweenDates(@PathVariable("id") Long studentId,
+                                                                                  @RequestParam String from,
+                                                                                  @RequestParam String to){
+        List<StudentCourseMarkDTO> markBetweenDate = studentCourseMarkService.getMarkBetweenDate(studentId, from, to);
+        return ResponseEntity.ok(markBetweenDate);
+    }
 }

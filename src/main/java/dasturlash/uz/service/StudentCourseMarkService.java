@@ -52,7 +52,7 @@ public class StudentCourseMarkService {
         return true;
     }
 
-    public  StudentCourseMarkEntity findById(Long id) {
+    public StudentCourseMarkEntity findById(Long id) {
         return studentCourseMarkRepository.findById(id).orElse(null);
     }
 
@@ -76,6 +76,27 @@ public class StudentCourseMarkService {
         studentCourseMarkRepository.findAll().forEach(studentCourseMarkEntity -> {
             studentCourseMarkDTOList.add(toDTO(studentCourseMarkEntity));
         });
+        return studentCourseMarkDTOList;
+    }
+
+    public List<StudentCourseMarkDTO> getMarkByDate(Long studentId, String date) {
+        LocalDateTime temp = LocalDateTime.parse(date);
+        List<StudentCourseMarkDTO> studentCourseMarkDTOList = new LinkedList<>();
+        studentCourseMarkRepository.findStudentCoursesByStudentIdAndCreatedDate(studentId, temp)
+                .forEach(entity -> {
+                    studentCourseMarkDTOList.add(toDTO(entity));
+                });
+        return studentCourseMarkDTOList;
+    }
+
+    public List<StudentCourseMarkDTO> getMarkBetweenDate(Long studentId, String start, String end) {
+        LocalDateTime from = LocalDateTime.parse(start);
+        LocalDateTime to = LocalDateTime.parse(end);
+        List<StudentCourseMarkDTO> studentCourseMarkDTOList = new LinkedList<>();
+        studentCourseMarkRepository.findStudentCoursesByStudentIdAndCreatedDateBetween(studentId, from, to)
+                .forEach(entity -> {
+                    studentCourseMarkDTOList.add(toDTO(entity));
+                });
         return studentCourseMarkDTOList;
     }
 
