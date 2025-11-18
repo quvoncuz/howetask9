@@ -1,0 +1,43 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+POST localhost:8080/student/create
+Content-Type: application/json
+
+{
+    "name": "Ali",
+    "surname": "Toshmatov",
+    "age": 20,
+    "level": 4,
+    "gender": "MALE"
+}
+
+### GET
+GET localhost:8080/student/list
+
+### GET
+GET localhost:8080/student/2
+
+### DELETE
+DELETE localhost:8080/student/1
+
+###
+PUT localhost:8080/student/update/7
+Content-Type: application/json
+
+{
+    "name": "Adolat",
+    "surname": "Queen",
+    "age": 22,
+    "level": 4,
+    "gender": "FEMALE"
+}
+
+### GET
+GET localhost:8080/student/by-date/2025-11-17T17:16:22.272181
+
+
+### GET
+GET localhost:8080/student/between-dates/2025-11-17T09:57:50.383008/2025-11-17T17:16:22.272181

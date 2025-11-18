@@ -1,0 +1,21 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+POST localhost:8080/course/create
+Content-Type: application/json
+
+{
+  "name": "Java b2",
+  "duration": 24,
+  "price": 200
+}
+###
+GET localhost:8080/course/3
+
+###
+GET localhost:8080/course/list
+
+###
+GET localhost:8080/course/name/Java b2

@@ -1,0 +1,19 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=IntelliJ IDEA
+
+###
+POST localhost:8080/student-course/create
+Content-Type: application/json
+
+{
+  "studentId": 2,
+  "courseId": 2,
+  "mark": true
+}
+
+###
+GET localhost:8080/student-course/
+
+###
+GET localhost:8080/student-course/detail/1
