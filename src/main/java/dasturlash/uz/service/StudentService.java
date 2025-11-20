@@ -2,8 +2,13 @@ package dasturlash.uz.service;
 
 import dasturlash.uz.dto.StudentDTO;
 import dasturlash.uz.entity.StudentEntity;
+import dasturlash.uz.mapper.StudentInfoMapper;
 import dasturlash.uz.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -128,6 +133,41 @@ public class StudentService {
         }
         return studentDTOList;
     }
+
+    public List<StudentDTO> findShortInfo(Integer age) {
+        List<StudentInfoMapper> entityList = studentRepository.findShortInfo(age);
+        List<StudentDTO> dtoList = new LinkedList<>();
+
+        for (StudentInfoMapper mapper : entityList) {
+            StudentDTO dto = new StudentDTO();
+            dto.setName(mapper.getName());
+            dto.setSurname(mapper.getSurname());
+            dtoList.add(dto);
+        }
+        return dtoList;
+    }
+
+    public PageImpl<StudentDTO> pagination(int page , int size) {
+        // page = 1, size = 30
+        PageRequest pageRequest = PageRequest.of(page-1, size, Sort.by("age").descending());
+        Page<StudentEntity> pageResult = studentRepository.findAll(pageRequest);
+        // content - select * from student limit :size offset :page
+        // totalCount - select count(*) from student
+
+        List<StudentDTO> dtoList = new LinkedList<>();
+        for (StudentEntity entity : pageResult.getContent()) {
+            StudentDTO dto = new StudentDTO();
+            dto.setName(entity.getName());
+            dto.setSurname(entity.getSurname());
+            dtoList.add(dto);
+        }
+
+        long totalCount = pageResult.getTotalElements();
+
+        return new PageImpl<>(dtoList, pageRequest, totalCount);
+    }
+
+
 
     private StudentDTO toDTO(StudentEntity studentEntity) {
         StudentDTO studentDTO = new StudentDTO();

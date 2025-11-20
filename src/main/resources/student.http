@@ -41,3 +41,9 @@ GET localhost:8080/student/by-date/2025-11-17T17:16:22.272181
 
 ### GET
 GET localhost:8080/student/between-dates/2025-11-17T09:57:50.383008/2025-11-17T17:16:22.272181
+
+### GET
+GET localhost:8080/student/short-info?age=20
+
+###
+GET localhost:8080/student/pagination?page=3&size=3

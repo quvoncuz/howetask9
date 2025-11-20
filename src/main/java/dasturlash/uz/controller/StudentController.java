@@ -4,6 +4,7 @@ import dasturlash.uz.dto.StudentDTO;
 import dasturlash.uz.entity.StudentEntity;
 import dasturlash.uz.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -84,6 +85,20 @@ public class StudentController {
                                                                         @PathVariable("to") String to) {
         return ResponseEntity.ok(studentService.getStudentByCreatedDateBetween(from, to));
     }
+
+    @GetMapping("/short-info")
+    public ResponseEntity<List<StudentDTO>> getShortInfoByAge(@RequestParam("age") Integer age) {
+        List<StudentDTO> result = studentService.findShortInfo(age);
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/pagination")
+    public ResponseEntity<PageImpl<StudentDTO>> pagination(@RequestParam(value = "page", defaultValue = "1") int page,
+                                                           @RequestParam(value = "size", defaultValue = "30") int size) {
+        return ResponseEntity.ok(studentService.pagination(page, size));
+    }
+
+
 }
 
 
